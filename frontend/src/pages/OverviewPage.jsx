@@ -6,7 +6,7 @@ import {
     importAllAthletes,
 } from "../services/api";
 
-export default function OverviewPage({auth}) {
+export default function OverviewPage() {
     const currentYear = new Date().getFullYear();
 
     const [mode, setMode] = useState("PR");
@@ -24,8 +24,8 @@ export default function OverviewPage({auth}) {
 
             const data =
                 mode === "PR"
-                    ? await fetchPrOverview(auth)
-                    : await fetchSbOverview(year, auth);
+                    ? await fetchPrOverview()
+                    : await fetchSbOverview(year);
 
             setRows(data);
         } catch (err) {

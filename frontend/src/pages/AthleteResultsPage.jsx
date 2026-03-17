@@ -12,7 +12,7 @@ import {
     Legend
 } from "recharts";
 
-export default function AthleteResultsPage({auth}) {
+export default function AthleteResultsPage() {
     const { athleteId } = useParams();
 
     const [results, setResults] = useState([]);
@@ -26,7 +26,7 @@ export default function AthleteResultsPage({auth}) {
                 setLoading(true);
                 setError("");
 
-                const data = await fetchAthleteResults(athleteId, auth);
+                const data = await fetchAthleteResults(athleteId);
 
                 data.sort((a, b) => new Date(b.resultDate) - new Date(a.resultDate));
                 setResults(data);
