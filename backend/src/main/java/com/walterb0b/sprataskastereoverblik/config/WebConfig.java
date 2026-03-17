@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://spartas-kastere-overblik-3o8srmw1k-walterb0bs-projects.vercel.app", "http://localhost:5173")
+                .allowedOrigins("https://*.vercel.app", "http://localhost:5173")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }
