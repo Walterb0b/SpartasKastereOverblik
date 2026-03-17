@@ -21,24 +21,24 @@ async function apiFetch(url, auth, options = {}) {
 }
 
 export async function fetchPrOverview(auth) {
-    const response = await apiFetch("http://localhost:8080/api/overview/pr", auth);
+    const response = await apiFetch("https://spartaskastereoverblik.onrender.com/api/overview/pr", auth);
     return response.json();
 }
 
 export async function fetchSbOverview(year, auth) {
-    const response = await apiFetch(`http://localhost:8080/api/overview/sb/${year}`, auth);
+    const response = await apiFetch(`https://spartaskastereoverblik.onrender.com/api/overview/sb/${year}`, auth);
     return response.json();
 }
 
 export async function importAllAthletes(auth) {
-    await apiFetch("http://localhost:8080/api/import/all", auth, {
+    await apiFetch("https://spartaskastereoverblik.onrender.com/api/import/all", auth, {
         method: "POST",
     });
 }
 
 export async function fetchAthleteResults(athleteId, auth) {
     const response = await apiFetch(
-        `http://localhost:8080/api/results/athlete/${athleteId}`,
+        `https://spartaskastereoverblik.onrender.com/api/results/athlete/${athleteId}`,
         auth
     );
     return response.json();
