@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
+        registry.addMapping("/**")
                 .allowedOrigins("https://spartaskastereoverblik.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
