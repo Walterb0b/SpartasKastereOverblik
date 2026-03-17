@@ -3,7 +3,6 @@ import OverviewTable from "../components/OverviewTable";
 import {
     fetchPrOverview,
     fetchSbOverview,
-    importAllAthletes,
 } from "../services/api";
 
 export default function OverviewPage() {
@@ -13,9 +12,7 @@ export default function OverviewPage() {
     const [year, setYear] = useState(currentYear);
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [importing, setImporting] = useState(false);
     const [error, setError] = useState("");
-    const [message, setMessage] = useState("");
 
     async function loadData() {
         try {
@@ -32,24 +29,6 @@ export default function OverviewPage() {
             setError(err.message || "Noget gik galt");
         } finally {
             setLoading(false);
-        }
-    }
-
-    async function handleImportAll() {
-        try {
-            setImporting(true);
-            setError("");
-            setMessage("Import kører...");
-
-            await importAllAthletes(auth);
-            await loadData();
-
-            setMessage("Import færdig");
-        } catch (err) {
-            setError(err.message || "Import fejlede");
-            setMessage("");
-        } finally {
-            setImporting(false);
         }
     }
 
@@ -113,27 +92,7 @@ export default function OverviewPage() {
                             />
                         </label>
                     )}
-
-                    {auth.username === "admin" && (
-                        <button onClick={handleImportAll} disabled={importing} style={buttonStyle}>
-                            {importing ? "Importerer..." : "Import all"}
-                        </button>
-                    )}
                 </div>
-
-                {message && (
-                    <div
-                        style={{
-                            marginBottom: "16px",
-                            padding: "12px",
-                            backgroundColor: "#ecfdf5",
-                            border: "1px solid #a7f3d0",
-                            borderRadius: "8px",
-                        }}
-                    >
-                        {message}
-                    </div>
-                )}
 
                 {error && (
                     <div
